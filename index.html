@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HBD Madam Ji</title>
+
+<style>
+    body {
+        margin: 0;
+        background: #000;
+        font-family: "Poppins", sans-serif;
+        overflow: hidden;
+        color: white;
+    }
+
+    /* Floating Hearts */
+    .heart {
+        position: fixed;
+        bottom: -20px;
+        width: 20px;
+        height: 20px;
+        background: pink;
+        transform: rotate(45deg);
+        animation: floatUp 4s linear infinite;
+        opacity: 0.8;
+    }
+    .heart:before, .heart:after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: pink;
+        border-radius: 50%;
+    }
+    .heart:before { top: -10px; left: 0; }
+    .heart:after { left: -10px; top: 0; }
+
+    @keyframes floatUp {
+        0% { transform: translateY(0) rotate(45deg); opacity: 0.8; }
+        100% { transform: translateY(-800px) rotate(45deg); opacity: 0; }
+    }
+
+    /* Candle + Cake */
+    .container {
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .cake {
+        width: 160px;
+        height: 120px;
+        background: #ff4f91;
+        border-radius: 20px;
+        position: relative;
+        margin: auto;
+        box-shadow: 0 0 20px #ff4f91aa;
+    }
+
+    .candle {
+        width: 16px;
+        height: 60px;
+        background: #fff;
+        position: absolute;
+        top: -60px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 4px;
+    }
+
+    .flame {
+        width: 15px;
+        height: 25px;
+        background: orange;
+        border-radius: 50%;
+        position: absolute;
+        top: -28px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: flicker 0.15s infinite;
+        box-shadow: 0 0 15px orange;
+    }
+
+    @keyframes flicker {
+        0% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.15); }
+        100% { transform: translateX(-50%) scale(1); }
+    }
+
+    /* Pink Smoke */
+    .smoke {
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 10px;
+        height: 10px;
+        background: pink;
+        border-radius: 50%;
+        opacity: 0;
+        animation: smokeUp 1.5s forwards;
+    }
+
+    @keyframes smokeUp {
+        0% { opacity: 1; transform: translate(-50%, 0) scale(0.5); }
+        100% { opacity: 0; transform: translate(-50%, -120px) scale(2); }
+    }
+
+    /* Letter */
+    .letter {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 500px;
+        background: rgba(255, 100, 150, 0.15);
+        backdrop-filter: blur(10px);
+        padding: 25px;
+        border-radius: 20px;
+        box-shadow: 0 0 25px #ff77cc;
+        font-size: 18px;
+        line-height: 28px;
+        opacity: 0;
+        transition: 1.5s;
+        text-align: center;
+        color: #ffcce8;
+    }
+
+    .showLetter {
+        top: 10%;
+        opacity: 1;
+    }
+
+    h1 {
+        font-size: 32px;
+        letter-spacing: 1px;
+        text-shadow: 0 0 15px hotpink;
+    }
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING HEARTS -->
+<script>
+    setInterval(() => {
+        let h = document.createElement("div");
+        h.className = "heart";
+        h.style.left = Math.random() * window.innerWidth + "px";
+        h.style.animationDuration = 3 + Math.random()*3 + "s";
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 6000);
+    }, 300);
+</script>
+
+<h1 style="text-align:center; margin-top:40px;">HBD Madam Ji 🎀💗</h1>
+
+<div class="container" onclick="blowCandle()">
+    <div class="cake">
+        <div class="candle">
+            <div id="flame" class="flame"></div>
+        </div>
+    </div>
+</div>
+
+<div id="letter" class="letter">
+    <strong>Meri Madam Ji,</strong><br><br>
+    Aap thodi si sick ho, isliye cake cut karna mushkil hai…<br>
+    Toh maine socha, ek virtual cute sa cake bana doon, jisme aap sirf ek click se candle blow kar sakti ho. 💗🕯️<br><br>
+
+    Jaldi se theek ho jao meri slayy queen ji… 💖<br>
+    Aapki smile hi mera poora world bright kar deti hai! 🌟<br>
+    Aur haan, apni tablets time pe lena, kyunki aap meri future doctor ho, aur main chahta hoon ke meri Madam Ji hamesha healthy aur happy rahe. 💊💗<br><br>
+
+    <strong>Get Well Soon Madam Jiii 💗✨</strong><br><br>
+
+    – Aapka <strong>Kochieee Pochieee</strong> 💗
+</div>
+
+<script>
+function blowCandle() {
+    let flame = document.getElementById("flame");
+    if (flame) flame.remove();
+
+    // Pink smoke
+    for (let i = 0; i < 10; i++) {
+        let s = document.createElement("div");
+        s.className = "smoke";
+        s.style.left = "50%";
+        document.querySelector(".candle").appendChild(s);
+
+        setTimeout(() => s.remove(), 1500);
+    }
+
+    // Show letter after blowing
+    setTimeout(() => {
+        document.getElementById("letter").classList.add("showLetter");
+    }, 1200);
+}
+</script>
+
+</body>
+</html>
